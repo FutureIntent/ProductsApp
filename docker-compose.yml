@@ -1,0 +1,47 @@
+services:
+    mysql:
+        image: products_mysql_database
+        build: /MySQL
+        ports:
+            - "3306:3306"
+        networks:
+            - ProductsAppNetwork
+        volumes:
+            - ./MySQL/data:/var/lib/mysql
+        env_file: "/MySQL/MySQL.env"
+        restart: always
+    nginx:
+        image: products_nginx_server
+        build: /Nginx
+        ports:
+            - "80:80"
+        networks:
+            - ProductsAppNetwork
+        volumes:
+            - ./Nginx/modules/nginx.conf:/etc/nginx/nginx.conf
+            - ./Nginx/modules/conf.d:/etc/nginx/conf.d
+            - ./Nginx/modules/logs:/var/log/nginx
+            - ./Nginx/modules/data:/usr/share/nginx/data
+        env_file: "/Nginx/Nginx.env"
+        restart: always
+    laravel:
+        image: products_laravel_app
+        build: /ProductsApp
+        # command: sh -c "npm install && npm run build && composer install && composer run dev"
+        command: sh -c "npm install && composer install && composer run dev"
+        ports:
+            - "8000:8000"
+            - "5173:5173"
+        networks:
+            - ProductsAppNetwork
+        volumes:
+            - ./ProductsApp:/app/projects/ProductsApp
+        env_file: "/ProductsApp/.env"
+        depends_on:
+            - mysql
+            - nginx
+
+networks:
+    ProductsAppNetwork:
+        name: ProductsAppNetwork
+        driver: bridge

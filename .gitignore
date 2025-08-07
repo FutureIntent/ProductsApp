@@ -1,0 +1,32 @@
+# Products App
+/ProductsApp/.phpunit.cache
+/ProductsApp/bootstrap/ssr
+/ProductsApp/node_modules
+/ProductsApp/public/build
+/ProductsApp/public/hot
+/ProductsApp/public/storage
+/ProductsApp/storage/*.key
+/ProductsApp/storage/pail
+/ProductsApp/vendor
+# /ProductsApp/.env
+/ProductsApp/.env.backup
+/ProductsApp/.env.production
+/ProductsApp/.phpactor.json
+/ProductsApp/.phpunit.result.cache
+/ProductsApp/Homestead.json
+/ProductsApp/Homestead.yaml
+/ProductsApp/npm-debug.log
+/ProductsApp/yarn-error.log
+/ProductsApp/auth.json
+/ProductsApp/.fleet
+/ProductsApp/.idea
+/ProductsApp/.nova
+/ProductsApp/.vscode
+/ProductsApp/.zed
+# /ProductsApp/
+
+# Database
+/MySQL/data/*
+
+# Nginx logs
+/Nginx/modules/logs/*
