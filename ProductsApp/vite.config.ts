@@ -23,11 +23,18 @@ export default defineConfig({
         },
     },
     server: {
+        watch: {
+            usePolling: true,
+        },
         host: true,
-        port: 5173
+        port: 5173,
+        strictPort: true,
+        allowedHosts: ["laravel"],
     },
     preview: {
         host: true,
-        port: 6173
-    }
+        port: 5173,
+        strictPort: true,
+    },
+    base: "/ui"
 });

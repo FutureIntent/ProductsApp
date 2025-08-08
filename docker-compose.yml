@@ -36,6 +36,7 @@ services:
             - ProductsAppNetwork
         volumes:
             - ./ProductsApp:/app/projects/ProductsApp
+            - ./Nginx/modules/data:/app/projects/ProductsApp/public/data
         env_file: "/ProductsApp/.env"
         depends_on:
             - mysql
