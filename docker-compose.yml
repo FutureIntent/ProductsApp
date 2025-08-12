@@ -24,22 +24,33 @@ services:
             - ./Nginx/modules/data:/usr/share/nginx/data
         env_file: "/Nginx/Nginx.env"
         restart: always
-    laravel:
+    laravel_app:
         image: products_laravel_app
-        build: /ProductsApp
-        # command: sh -c "npm install && npm run build && composer install && composer run dev"
-        command: sh -c "npm install && composer install && composer run dev"
+        build: /LaravelApp
+        command: sh -c "composer install && php artisan serve --host=0.0.0.0 --port=8000"
         ports:
             - "8000:8000"
+        networks:
+            - ProductsAppNetwork
+        volumes:
+            - ./LaravelApp:/app/projects/laravelApp
+            - ./Nginx/modules/data:/app/projects/laravelApp/public/data
+        env_file: "/LaravelApp/LaravelApp.env"
+        depends_on:
+            - mysql
+            - nginx
+    react_app:
+        image: products_react_app
+        build: /ReactApp
+        command: sh -c "yarn install && yarn run dev"
+        ports:
             - "5173:5173"
         networks:
             - ProductsAppNetwork
         volumes:
-            - ./ProductsApp:/app/projects/ProductsApp
-            - ./Nginx/modules/data:/app/projects/ProductsApp/public/data
-        env_file: "/ProductsApp/.env"
+            - ./ReactApp:/app/projects/reactApp
+        env_file: /ReactApp/ReactApp.env
         depends_on:
-            - mysql
             - nginx
 
 networks:

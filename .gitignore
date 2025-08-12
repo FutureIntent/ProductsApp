@@ -1,32 +1,54 @@
-# Products App
-/ProductsApp/.phpunit.cache
-/ProductsApp/bootstrap/ssr
-/ProductsApp/node_modules
-/ProductsApp/public/build
-/ProductsApp/public/hot
-/ProductsApp/public/storage
-/ProductsApp/storage/*.key
-/ProductsApp/storage/pail
-/ProductsApp/vendor
-# /ProductsApp/.env
-/ProductsApp/.env.backup
-/ProductsApp/.env.production
-/ProductsApp/.phpactor.json
-/ProductsApp/.phpunit.result.cache
-/ProductsApp/Homestead.json
-/ProductsApp/Homestead.yaml
-/ProductsApp/npm-debug.log
-/ProductsApp/yarn-error.log
-/ProductsApp/auth.json
-/ProductsApp/.fleet
-/ProductsApp/.idea
-/ProductsApp/.nova
-/ProductsApp/.vscode
-/ProductsApp/.zed
-# /ProductsApp/
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ReactApp
+/ReactApp/logs
+/ReactApp/*.log
+/ReactApp/npm-debug.log*
+/ReactApp/yarn-debug.log*
+/ReactApp/yarn-error.log*
+/ReactApp/pnpm-debug.log*
+/ReactApp/lerna-debug.log*
+/ReactApp/node_modules
+/ReactApp/dist
+/ReactApp/dist-ssr
+/ReactApp/*.local
+
+# LaravelApp
+/LaravelApp/*.log
+/LaravelApp/.DS_Store
+/LaravelApp/.env.backup
+/LaravelApp/.env.production
+/LaravelApp/.phpactor.json
+/LaravelApp/.phpunit.result.cache
+/LaravelApp/.fleet
+/LaravelApp/.idea
+/LaravelApp/.nova
+/LaravelApp/.phpunit.cache
+/LaravelApp/.vscode
+/LaravelApp/.zed
+/LaravelApp/auth.json
+/LaravelApp/node_modules
+/LaravelApp/public/build
+/LaravelApp/public/hot
+/LaravelApp/public/storage
+/LaravelApp/storage/*.key
+/LaravelApp/storage/pail
+/LaravelApp/vendor
+/LaravelApp/Homestead.json
+/LaravelApp/Homestead.yaml
+/LaravelApp/Thumbs.db
 
 # Database
 /MySQL/data/*
 
-# Nginx logs
+# Nginx
 /Nginx/modules/logs/*
