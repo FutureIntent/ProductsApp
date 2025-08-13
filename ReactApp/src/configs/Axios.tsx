@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const { VITE_CLIENT_URL, VITE_API_URL } = import.meta.env;
 
 const Axios = axios.create({
@@ -13,5 +14,6 @@ const Axios = axios.create({
     withCredentials: true,
     responseType: 'json'
 });
+
 
 export default Axios;

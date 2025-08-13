@@ -1,21 +1,15 @@
-import Axios from "@configs/Axios";
-import { useEffect } from "preact/hooks";
+import { store } from '@configs/Redux';
+import { Provider } from 'react-redux';
+
 
 export function App() {
 
-  useEffect(() => {
-
-    Axios.get('/zxc')
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
-
-  }, []);
-
   return (
-    <div>
+    <Provider store={store}>
       zxc
-    </div>
+    </Provider>
   );
 }
+
 
 export default App;

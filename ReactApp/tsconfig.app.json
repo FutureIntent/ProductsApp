@@ -39,8 +39,14 @@
       "@pages/*": [
         "./src/pages/*"
       ],
+      "@slices/*": [
+        "./src/slices/*"
+      ],
       "@styles/*": [
         "./src/styles/*"
+      ],
+      "@wrappers/*": [
+        "./src/wrappers/*"
       ]
     },
     /* Bundler mode */
