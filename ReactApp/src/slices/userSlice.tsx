@@ -9,7 +9,7 @@ export interface UserInterface {
     status: boolean
 };
 
-const initialState: UserInterface = {
+export const initialUser: UserInterface = {
     name: null,
     email: null,
     roles: [],
@@ -18,14 +18,14 @@ const initialState: UserInterface = {
 
 export const userSlice = createSlice({
     name: 'user',
-    initialState,
+    initialState: initialUser,
     reducers: {
-        storeUser: (state, action: PayloadAction<UserInterface>) => {
-            state = action.payload;
+        setUser: (_state, action: PayloadAction<UserInterface>) => {
+            return { ...action.payload };
         }
     }
 });
 
 
-export const { storeUser } = userSlice.actions;
+export const { setUser } = userSlice.actions;
 export default userSlice.reducer;
