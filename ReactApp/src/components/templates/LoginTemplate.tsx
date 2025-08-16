@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LoginForm from "@components/organisms/LoginForm";
 
 
 const LoginDiv = styled.div`
@@ -10,7 +11,7 @@ const LoginTemplate = () => {
 
     return (
         <LoginDiv>
-            Login Page
+            <LoginForm />
         </LoginDiv>
     );
 }

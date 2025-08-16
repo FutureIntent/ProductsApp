@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+import { Link } from "react-router";
 import styled from "styled-components";
 
 
@@ -9,7 +11,9 @@ const DashboardTemplate = () => {
 
     return (
         <DashboardDiv>
-            Dashboard Page
+            <Link to="/admin/manage-products">
+                <Button variant="outlined">Product Manager Tool</Button>
+            </Link>
         </DashboardDiv>
     );
 }

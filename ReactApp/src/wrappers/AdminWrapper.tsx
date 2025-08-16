@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 
 const AdminWrapper = () => {
 
-    const isLoading = useGuard();
+    const isLoading = useGuard("/auth");
 
 
     return (

@@ -24,7 +24,7 @@ gap: 0.5rem;
 const Header = () => {
 
     const authenticated = useSelector((state: RootState) => state.user.status);
-    console.log(`auth: ${authenticated}`);
+
 
     return (
         <HeaderDiv>

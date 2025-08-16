@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 
 const AuthWrapper = () => {
 
-    const isLoading = useGuard();
+    const isLoading = useGuard(null, "/");
 
 
     return (

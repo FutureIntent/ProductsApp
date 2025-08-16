@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 
 export interface UserInterface {
+    id: number | null,
     name: string | null,
     email: string | null,
     roles: string[],
@@ -10,6 +11,7 @@ export interface UserInterface {
 };
 
 export const initialUser: UserInterface = {
+    id: null,
     name: null,
     email: null,
     roles: [],
