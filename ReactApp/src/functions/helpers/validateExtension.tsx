@@ -1,0 +1,2 @@
+
+export const validateImage = (file: File) => (["image/apng", "image/avif", "image/gif", "image/jpeg", "image/png", "image/svg+xml", "image/webp"].includes(file.type));

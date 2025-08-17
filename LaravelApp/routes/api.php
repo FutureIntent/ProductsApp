@@ -3,10 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
 Route::get('/zxc', function (Request $request) {
     return ["zxc" => "zzz"];
 });
+
+
+require __DIR__ . '/api/user.php';
+require __DIR__ . '/api/products.php';

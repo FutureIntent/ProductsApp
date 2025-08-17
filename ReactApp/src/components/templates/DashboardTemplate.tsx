@@ -11,8 +11,8 @@ const DashboardTemplate = () => {
 
     return (
         <DashboardDiv>
-            <Link to="/admin/manage-products">
-                <Button variant="outlined">Product Manager Tool</Button>
+            <Link to="/admin/products-add">
+                <Button variant="outlined">Add New Products</Button>
             </Link>
         </DashboardDiv>
     );

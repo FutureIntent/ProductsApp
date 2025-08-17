@@ -36,9 +36,7 @@ const LoginForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
-        resolver: yupResolver(schema),
-    });
+    } = useForm({ resolver: yupResolver(schema) });
 
     const onSubmit = (body: LoginInterface) => {
         Axios.get('/csrf-cookie')
@@ -58,11 +56,11 @@ const LoginForm = () => {
 
     return (
         <LoginFormDiv>
-            <form style={{ width: '100%', display: 'flex', maxWidth: '300px' }} onSubmit={handleSubmit(onSubmit)}>
+            <form style={{ width: '100%', display: 'flex', maxWidth: '350px' }} onSubmit={handleSubmit(onSubmit)}>
                 <MUIPaper elevation={1}>
 
                     <TextField {...register("email")} id="loginEmail"
-                        label="Email" variant="standard"
+                        label="Email" variant="standard" type="email"
                         error={errors.email?.message ? true : false}
                         helperText={errors.email?.message ?? ""}
                     />

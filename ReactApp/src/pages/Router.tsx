@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import Index from "@pages/quest/Index";
-import ManageProducts from "@pages/user/ManageProducts";
+import ProductsAdd from "@src/pages/user/ProductsAdd";
 import Login from "@pages/quest/Login";
 import AuthWrapper from "@src/wrappers/AuthWrapper";
 import AdminWrapper from "@src/wrappers/AdminWrapper";
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 Component: AdminWrapper,
                 children: [
                     { index: true, Component: Dashboard },
-                    { path: 'manage-products', Component: ManageProducts }
+                    { path: 'products-add', Component: ProductsAdd }
                 ]
             }
         ]

@@ -21,7 +21,7 @@ services:
             - ./Nginx/modules/nginx.conf:/etc/nginx/nginx.conf
             - ./Nginx/modules/conf.d:/etc/nginx/conf.d
             - ./Nginx/modules/logs:/var/log/nginx
-            - ./Nginx/modules/data:/usr/share/nginx/data
+            - ./Nginx/modules/public:/usr/share/nginx/public
         env_file: "/Nginx/Nginx.env"
         restart: always
     laravel_app:
@@ -34,7 +34,8 @@ services:
             - ProductsAppNetwork
         volumes:
             - ./LaravelApp:/app/projects/laravelApp
-            - ./Nginx/modules/data:/app/projects/laravelApp/public/data
+            - ./Nginx/modules/public:/app/projects/laravelApp/storage/app/public
+            - ./LaravelApp/php/php-config.ini:/usr/local/etc/php/conf.d/php-config.ini
         env_file: "/LaravelApp/LaravelApp.env"
         depends_on:
             - mysql
