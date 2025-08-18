@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ProductList from "@components/organisms/ProductList";
 
 
 const IndexDiv = styled.div`
@@ -10,7 +11,7 @@ const IndexTemplate = () => {
 
     return (
         <IndexDiv>
-            Index Page
+            <ProductList />
         </IndexDiv>
     );
 }

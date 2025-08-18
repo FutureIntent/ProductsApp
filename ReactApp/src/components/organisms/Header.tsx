@@ -59,8 +59,8 @@ const Header = () => {
                         }
 
                         <ButtonWrapper>
-                            {!authenticated && <Link to="/auth"><Button color="success" variant="outlined">Login</Button></Link>}
-                            {authenticated && <Button color="error" variant="outlined" onClick={() => handleLogout()}>Logout</Button>}
+                            {!authenticated && <Link to="/auth"><Button color="success" variant="contained">Login</Button></Link>}
+                            {authenticated && <Button color="error" variant="contained" onClick={() => handleLogout()}>Logout</Button>}
                         </ButtonWrapper>
 
                     </Toolbar>
