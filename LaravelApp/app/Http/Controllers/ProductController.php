@@ -3,19 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
+
 
 class ProductController extends Controller
 {
+
+    private $productService;
+
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $products = $this->productService->index($request);
+        return response()->json(["products" => $products], 200);
     }
 
     // /**
@@ -31,25 +40,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->validate([
-            'title' => 'string|required|min:1|max:255',
-            'description' => 'string|required|min:1|max:2000',
-            'image' => 'array|required|size:1',
-            'image.*' => 'image|required|max:10240'
-        ]);
-
-        $imagePath = $request->file('image')[0]->store('/images/products', ['disk' => 'public']);
-
-        $productDTO = [
-            "title" => $request->input('title'),
-            "description" => $request->input('description'),
-            "image" => $imagePath
-        ];
-
-        $created = new Product($productDTO)->save();
-
-        return ["created" => $created];
+        $created = $this->productService->store($request);
+        return response()->json(["created" => $created], 201);
     }
 
     /**
