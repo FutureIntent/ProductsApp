@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Product;
 use App\Services\Interfaces\ProductInterface;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 
@@ -15,14 +16,17 @@ class ProductService implements ProductInterface
     public function index(Request $request): array
     {
 
-        $request->validate([
+        $validated = $request->validate([
             'page' => 'integer|required|min:1',
             'limit' => 'integer|required|min:1',
             'filters' => 'array|required',
             'filters.title' => 'string|nullable'
         ]);
 
-        $products = Product::simplePaginate($request->query('limit'));
+        $products = Product::when($validated['filters']['title'], function (Builder $query, string $title) {
+            $query->whereLike('title', "%{$title}%");
+        })->orderBy('created_at', 'desc')->simplePaginate($validated['limit']);
+
         $productsDTO = [
             'products' => [],
             'hasMore' => true
@@ -32,7 +36,7 @@ class ProductService implements ProductInterface
             array_push($productsDTO['products'], $product);
         }
         $productsDTO['hasMore'] = $products->hasMorePages();
-        // dd($productsDTO);
+
         return $productsDTO;
     }
 

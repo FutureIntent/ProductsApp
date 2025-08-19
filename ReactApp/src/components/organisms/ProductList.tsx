@@ -5,6 +5,8 @@ import { useMemo, useState } from "preact/hooks";
 import type { ChangeEvent } from "preact/compat";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Axios from "@src/configs/Axios";
+import MUICard from "../molecules/MUICard";
+import { theme } from "@src/configs/Media";
 
 
 interface ProductInstance {
@@ -55,7 +57,15 @@ gap: 1rem;
 
 const ListDiv = styled.div`
 width: 100%;
-height: 100vh;
+min-height: 100vh;
+`;
+
+const CardDiv = styled.div`
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
 `;
 
 
@@ -64,10 +74,11 @@ const ProductList = () => {
     const [query, setQuery] = useState<ProductQuery>({ ...initialQuery });
     const [filters, setFilters] = useState<ProductFilters>({ ...initialFilters });
     const [products, setProducts] = useState<ProductDTO>({ ...initialProducts });
+    const [loading, setLoading] = useState<boolean>(true);
 
 
     const handleFetch = () => {
-        console.log(query);
+        setLoading(true);
 
         Axios.get('/products', {
             params: { ...query }
@@ -77,6 +88,7 @@ const ProductList = () => {
 
                 const data = res.data.products;
                 setProducts((prevState) => ({ products: [...prevState.products, ...data.products], hasMore: data.hasMore }));
+                setLoading(false);
             })
             .catch((err) => console.log(err))
     }
@@ -93,7 +105,7 @@ const ProductList = () => {
     }
 
     useMemo(handleFetch, [query]);
-
+    console.log(theme.breakpoints);
 
     return (
         <ProductListDiv>
@@ -103,7 +115,7 @@ const ProductList = () => {
                     <TextField id="filterTitle" label="Title" variant="standard" type="text" value={filters['title']}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setFilters((prevState) => ({ ...prevState, title: event.currentTarget.value }))}
                     />
-                    <Button variant="contained" type="submit">SEARCH</Button>
+                    <Button variant="contained" type="submit" disabled={loading}>SEARCH</Button>
 
                 </MUIPaper>
             </form>
@@ -112,20 +124,16 @@ const ProductList = () => {
                     dataLength={products['products'].length}
                     next={handleScroll}
                     hasMore={products.hasMore}
-                    loader={<h4>Loading...</h4>}
+                    loader={<h4 style={{ textAlign: 'center' }}>Loading...</h4>}
                     endMessage={
                         <p style={{ textAlign: 'center' }}>
                             <b>Yay! You have seen it all</b>
                         </p>
                     }
                 >
-                    {
-                        products['products'].map((product) => <div style={{ borderStyle: 'solid', borderColor: 'red', borderWidth: '0.1em', marginBottom: '1em', height: '300px' }}>
-                            <p>{product.title}</p>
-                            <p>{product.description}</p>
-                            <p>{product.image}</p>
-                        </div>)
-                    }
+                    <CardDiv>
+                        {products['products'].map((product) => <MUICard {...product} />)}
+                    </CardDiv>
                 </InfiniteScroll>
             </ListDiv>
         </ProductListDiv>

@@ -122,7 +122,7 @@ const ProductsAddForm = () => {
                         helperText={errors.image?.message ?? ""} type="file"
                     />
 
-                    <Button variant="contained" type="submit">LOGIN</Button>
+                    <Button variant="contained" type="submit">SAVE</Button>
                     {message.message && <Alert severity={message.severity as AlertColor}>{message.message}</Alert>}
                 </MUIPaper>
             </form>
